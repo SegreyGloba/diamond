@@ -1,78 +1,34 @@
 <?php
 
+ini_set('error_reporting', E_ALL);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+set_time_limit(2);
+
+
 if (is_numeric($argv[1])) {
-    $n = $m = $argv[1];
-    $a = zmeika($n, $m);
+    diamond($argv[1]);
 }
 else {
     echo 'The value must be a number.', PHP_EOL;
 }
 
-
-function zmeika($n, $m)
+function diamond($n)
 {
-    $z= [];
-    $k = 1;
-    for ($i = 0; $i < $n; $i++)
-    {
-        for ($j = 0; $j < $m; $j++)
-        {
-            if ($i%2 == 0)
-            {
-                $z[$i][$j] = $k++;
-            }
-            else
-            {
-                $z[$i][$m-$j-1] = $k++;
-            }
-        }
-
+    $a = $n;
+    for ($i = 1; $i < $a; $i++) {
+        for ($j = $i; $j < $a; $j++)
+            echo '  ';
+        for ($j = 2 * $i - 1; $j > 0; $j--)
+            echo (' *');
+        echo PHP_EOL;
     }
-    return $z;
-}
 
-
-
-if ($a) {
-    foreach ($a as $row) {
-        ksort($row);
-        foreach ($row as $value) {
-
-            echo $value;
-
-        }
+    for ($i = $n; $i > 0; $i--) {
+        for ($j = $n - $i; $j > 0; $j--)
+            echo '  ';
+        for ($j = 2 * $i - 1; $j > 0; $j--)
+            echo (' *');
         echo PHP_EOL;
     }
 }
-
-/*function zmeika($n, $m)
-{
-    $z= [];
-    $k = 1;
-    for ($i = 0; $i < $n; $i++)
-    {
-        for ($j = 0; $j < $m; $j++)
-        {
-            if ($i%2 == 0)
-            {
-                $z[$i][$j] = $k++;
-
-            }
-            else
-            {
-                $z[$i][$j] = $k++;
-            }
-        }
-
-    }
-    return $z;
-}
-
-$a=zmeika(3, 3);
-$m = 3;
-for ($i = 0; $i < $m; $i++)
-{
-    $b = $a[$i];
-    echo $b;
-}
-*/
